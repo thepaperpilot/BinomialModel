@@ -2,7 +2,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Binomial_Model {
+public class BinomialModel {
 
     public static double success_probability;
 
