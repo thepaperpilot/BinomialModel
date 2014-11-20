@@ -5,24 +5,25 @@ import java.util.Scanner;
 public class BinomialModel {
 
     public static double success_probability;
+    public static int trials;
 
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         System.out.println("What is the probability of success?");
         success_probability = s.nextDouble();
         System.out.println("How many trials are done?");
-        int trial_n = s.nextInt();
+        trials = s.nextInt();
         s.nextLine();
         ArrayList<BigDecimal> occurrence_probability = new ArrayList<BigDecimal>();
         ArrayList<String> occurrence_n = new ArrayList<String>();
-        for (int i = 0; i <= trial_n; i++) {
-            occurrence_probability.add(individual_probability(trial_n, i));
+        for (int i = 0; i <= trials; i++) {
+            occurrence_probability.add(individual_probability(trials, i));
             if (i>9){
                 occurrence_n.add("     " + i + "     ");
             }else occurrence_n.add("     " + i + "      ");
         }
-        BigDecimal expected_number_of_results = BigDecimal.valueOf(trial_n*success_probability);
-        BigDecimal standard_deviation = BigDecimal.valueOf(Math.pow(trial_n*success_probability*(1-success_probability),.5)).setScale(10,6);
+        BigDecimal expected_number_of_results = BigDecimal.valueOf(trials*success_probability);
+        BigDecimal standard_deviation = BigDecimal.valueOf(Math.pow(trials*success_probability*(1-success_probability),.5)).setScale(10,6);
         while (true) {
             System.out.println("What more information do you need?");
             String info = s.nextLine();
@@ -44,7 +45,7 @@ public class BinomialModel {
                 System.out.println(occurrence_n);
                 System.out.println(occurrence_probability);
             }else if (info.contains("s>=")) {
-                for (int i = number; i <= trial_n; i++) {
+                for (int i = number; i <= trials; i++) {
                     answer = answer.add(occurrence_probability.get(i));
                 }
                 System.out.println(answer);
@@ -54,7 +55,7 @@ public class BinomialModel {
                 } else if(info.length()==4){
                     number = Integer.valueOf(info.substring(info.length()-2,info.length()));
                 }
-                for (int i = number+1; i <= trial_n; i++) {
+                for (int i = number+1; i <= trials; i++) {
                     answer = answer.add(occurrence_probability.get(i));
                 }
                 System.out.println(answer);
