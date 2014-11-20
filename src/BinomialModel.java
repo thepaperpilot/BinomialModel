@@ -107,5 +107,19 @@ public class BinomialModel {
         }
         return factorial;
     }
+
+    public static String calc() {
+        ArrayList<BigDecimal> occurrence_probability = new ArrayList<BigDecimal>();
+        ArrayList<String> occurrence_n = new ArrayList<String>();
+        for (int i = 0; i <= trials; i++) {
+            occurrence_probability.add(individual_probability(trials, i));
+            if (i>9){
+                occurrence_n.add("     " + i + "     ");
+            }else occurrence_n.add("     " + i + "      ");
+        }
+        return "Standard Deviation: " + BigDecimal.valueOf(Math.pow(trials*success_probability*(1-success_probability),.5)).setScale(10,6) + "\n" +
+                "Expected Number Of Results: " + BigDecimal.valueOf(trials*success_probability) + "\n" +
+/*TODO Format better*/ "Probability Distribution: " + occurrence_n + "\n" + occurrence_probability;
+    }
 }
 
