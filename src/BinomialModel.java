@@ -12,6 +12,7 @@ public class BinomialModel {
         success_probability = s.nextDouble();
         System.out.println("How many trials are done?");
         int trial_n = s.nextInt();
+        s.nextLine();
         ArrayList<BigDecimal> occurrence_probability = new ArrayList<BigDecimal>();
         ArrayList<String> occurrence_n = new ArrayList<String>();
         for (int i = 0; i <= trial_n; i++) {
@@ -24,7 +25,7 @@ public class BinomialModel {
         BigDecimal standard_deviation = BigDecimal.valueOf(Math.pow(trial_n*success_probability*(1-success_probability),.5)).setScale(10,6);
         while (true) {
             System.out.println("What more information do you need?");
-            String info = s.next();
+            String info = s.nextLine();
             if(info.equalsIgnoreCase("end")){
                 break;
             }
