@@ -45,6 +45,7 @@ public static String getProbabilityDistribution() {
     return out;
 }
 
+/* TODO Try to optimize this. Really slow with trials above 1000 */
 public static String getSNumber(int selectedIndex, int sNum) {
     BigDecimal answer = BigDecimal.ZERO;
     ArrayList<BigDecimal> occurrences = new ArrayList<BigDecimal>();
