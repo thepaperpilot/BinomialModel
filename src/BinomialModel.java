@@ -5,10 +5,13 @@ class BinomialModel {
 
 public static double successChance;
 public static int trials;
-private static ArrayList<BigDecimal> probabilities;
+private static ArrayList<Double> probabilities;
+
+/* Right now theres an issue with having this set too high, in that it expands the textArea past the window bounds. If you can fix that, make an input to set this (jcombobox) */
+private final static int PRECISION = 10;
 
 private static BigDecimal probability(int n, int s) {
-    return nPk(n, s).multiply(BigDecimal.valueOf(successChance).pow(s)).multiply(BigDecimal.valueOf(1).subtract(BigDecimal.valueOf(successChance)).pow(n - s)).setScale(10, 6);
+    return nPk(n, s).multiply(BigDecimal.valueOf(successChance).pow(s)).multiply(BigDecimal.valueOf(1).subtract(BigDecimal.valueOf(successChance)).pow(n - s)).setScale(PRECISION, 6);
 }
 
 private static BigDecimal nPk(int n, int k){
@@ -18,7 +21,7 @@ private static BigDecimal nPk(int n, int k){
     if(k == 1 || k == n - 1){
         return BigDecimal.valueOf(n);
     }
-    return factorial(n).divide(factorial(k).multiply(factorial(n-k)), 10, 6);
+    return factorial(n).divide(factorial(k).multiply(factorial(n-k)), PRECISION, 6);
 }
 
 private static BigDecimal factorial(int n){
@@ -26,53 +29,59 @@ private static BigDecimal factorial(int n){
 }
 
 public static String getStandardDeviation() {
-    return BigDecimal.valueOf(Math.pow(trials * successChance * (1 - successChance), .5)).setScale(10, 6).toPlainString();
+    double out = Math.pow(trials * successChance * (1 - successChance), .5);
+    return fmt(out);
+}
+
+private static String fmt(double out) {
+    return out == (long) out ? String.format("%d", (long) out) : String.format("%." + PRECISION + "f", out);
 }
 
 public static String getNumberResults() {
-    return BigDecimal.valueOf(trials * successChance).toPlainString();
+    double out = trials * successChance;
+    return fmt(out);
 }
 
 public static String getProbabilityDistribution() {
     String out = "";
     for (int i = 0; i < probabilities.size(); i++) {
-        out += i + ":\t" + probabilities.get(i) + "\n";
+        out += i + ":\t" + fmt(probabilities.get(i)) + "\n";
     }
     return out;
 }
 
 public static void genOccurences() {
-    probabilities = new ArrayList<BigDecimal>();
+    probabilities = new ArrayList<Double>();
     for (int i = 0; i <= trials; i++) {
-        probabilities.add(probability(trials, i));
+        probabilities.add(probability(trials, i).doubleValue());
     }
 }
 
 public static String getX(int selectedIndex, int sNum) {
-    BigDecimal answer = BigDecimal.ZERO;
+    Double answer = 0.;
     switch (selectedIndex) {
         case 0: // <=
             for (int i = 0; i <= sNum; i++) {
-                answer = answer.add(probabilities.get(i));
+                answer += probabilities.get(i);
             }
             break;
         case 1: // >=
             for (int i = sNum; i <= trials; i++) {
-                answer = answer.add(probabilities.get(i));
+                answer += probabilities.get(i);
             }
             break;
         case 2: // <
             for (int i = 0; i < sNum; i++) {
-                answer = answer.add(probabilities.get(i));
+                answer += probabilities.get(i);
             }
             break;
         case 3: // >
             for (int i = sNum + 1; i <= trials; i++) {
-                answer = answer.add(probabilities.get(i));
+                answer += probabilities.get(i);
             }
             break;
     }
-    return answer.toPlainString();
+    return fmt(answer);
 }
 }
 
