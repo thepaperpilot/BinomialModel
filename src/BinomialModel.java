@@ -40,7 +40,7 @@ public static String getNumberResults() {
 public static String getProbabilityDistribution() {
     String out = "";
     for(int i = 0; i <= trials; i++) {
-        out += i + ": " + individual_probability(trials, i) + "\n";
+        out += i + ":\t" + individual_probability(trials, i) + "\n";
     }
     return out;
 }
