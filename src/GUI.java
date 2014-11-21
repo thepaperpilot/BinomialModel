@@ -1,6 +1,8 @@
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +11,6 @@ class GUI {
 private JTextField probability;
 private JTextField trials;
 private JPanel panel1;
-private JButton updateButton;
 private JTextField standardDeviation;
 private JTextField numResults;
 private JTextPane probDist;
@@ -28,16 +29,28 @@ public static void main(String[] args) {
 }
 
 private GUI() {
-    updateButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent actionEvent) {
-            BinomialModel.success_probability = Double.parseDouble(probability.getText());
-            BinomialModel.trials = Integer.parseInt(trials.getText());
-            standardDeviation.setText(BinomialModel.getStandardDeviation());
-            numResults.setText(BinomialModel.getNumberResults());
-            sOut.setText(BinomialModel.getSNumber(compare.getSelectedIndex(), (Integer) sNum.getValue()));
-            probDist.setText(BinomialModel.getProbabilityDistribution());
-            probDistPane.getVerticalScrollBar().setValue(0);
+    probability.getDocument().addDocumentListener(new DocumentListener() {
+        public void changedUpdate(DocumentEvent e) {
+            update();
+        }
+
+        public void removeUpdate(DocumentEvent e) {
+            update();
+        }
+
+        public void insertUpdate(DocumentEvent e) {
+            update();
+        }
+    });
+    trials.getDocument().addDocumentListener(new DocumentListener() {
+        public void changedUpdate(DocumentEvent e) {
+            update();
+        }
+        public void removeUpdate(DocumentEvent e) {
+            update();
+        }
+        public void insertUpdate(DocumentEvent e) {
+            update();
         }
     });
     compare.addActionListener(new ActionListener() {
@@ -71,6 +84,19 @@ private GUI() {
         if (compare.getComponent(i) instanceof AbstractButton) {
             ((AbstractButton) compare.getComponent(i)).setBorderPainted(false);
         }
+    }
+}
+
+private void update() {
+    try {
+        BinomialModel.success_probability = Double.parseDouble(probability.getText());
+        BinomialModel.trials = Integer.parseInt(trials.getText());
+        standardDeviation.setText(BinomialModel.getStandardDeviation());
+        numResults.setText(BinomialModel.getNumberResults());
+        sOut.setText(BinomialModel.getSNumber(compare.getSelectedIndex(), (Integer) sNum.getValue()));
+        probDist.setText(BinomialModel.getProbabilityDistribution());
+        probDistPane.getVerticalScrollBar().setValue(0);
+    } catch (NumberFormatException ignored) {
     }
 }
 }
