@@ -17,8 +17,8 @@ private JTextField numResults;
 private JTextPane probDist;
 private JScrollPane probDistPane;
 private JComboBox compare;
-private JSpinner sNum;
-private JTextField sOut;
+private JSpinner trial;
+private JTextField x;
 
 public static void main(String[] args) {
     JFrame frame = new JFrame("GUI");
@@ -47,9 +47,11 @@ private GUI() {
         public void changedUpdate(DocumentEvent e) {
             update();
         }
+
         public void removeUpdate(DocumentEvent e) {
             update();
         }
+
         public void insertUpdate(DocumentEvent e) {
             update();
         }
@@ -57,13 +59,13 @@ private GUI() {
     compare.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            sOut.setText(BinomialModel.getSNumber(compare.getSelectedIndex(), (Integer) sNum.getValue()));
+            x.setText(BinomialModel.getX(compare.getSelectedIndex(), (Integer) trial.getValue()));
         }
     });
-    sNum.addChangeListener(new ChangeListener() {
+    trial.addChangeListener(new ChangeListener() {
         @Override
         public void stateChanged(ChangeEvent changeEvent) {
-            sOut.setText(BinomialModel.getSNumber(compare.getSelectedIndex(), (Integer) sNum.getValue()));
+            x.setText(BinomialModel.getX(compare.getSelectedIndex(), (Integer) trial.getValue()));
         }
     });
 
@@ -71,7 +73,7 @@ private GUI() {
     trials.setBorder(BorderFactory.createLineBorder(new Color(187, 187, 187)));
     standardDeviation.setBorder(BorderFactory.createEmptyBorder());
     numResults.setBorder(BorderFactory.createEmptyBorder());
-    sOut.setBorder(BorderFactory.createEmptyBorder());
+    x.setBorder(BorderFactory.createEmptyBorder());
 
     /* Did you know the combo bux has a known bug preventing the border from being set? It's a shame, really */
     /* Credit goes to https://stackoverflow.com/questions/776893/remove-border-from-jcombobox for this code */
@@ -92,7 +94,7 @@ private void update() {
         BinomialModel.genOccurences();
         standardDeviation.setText(BinomialModel.getStandardDeviation());
         numResults.setText(BinomialModel.getNumberResults());
-        sOut.setText(BinomialModel.getSNumber(compare.getSelectedIndex(), (Integer) sNum.getValue()));
+        x.setText(BinomialModel.getX(compare.getSelectedIndex(), (Integer) trial.getValue()));
         probDist.setText(BinomialModel.getProbabilityDistribution());
         probDistPane.getVerticalScrollBar().setValue(0);
     } catch (NumberFormatException ignored) {

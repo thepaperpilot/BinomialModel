@@ -155,7 +155,7 @@
               <horizontalAlignment value="4"/>
             </properties>
           </component>
-          <component id="67c61" class="javax.swing.JSpinner" binding="sNum" default-binding="true">
+          <component id="67c61" class="javax.swing.JSpinner" binding="trial" default-binding="true">
             <constraints>
               <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -189,10 +189,10 @@
               <focusable value="false"/>
               <foreground color="-4473925"/>
               <labelFor value="cac6f"/>
-              <text value="S"/>
+              <text value="X"/>
             </properties>
           </component>
-          <component id="e4e48" class="javax.swing.JTextField" binding="sOut">
+          <component id="e4e48" class="javax.swing.JTextField" binding="x">
             <constraints>
               <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>

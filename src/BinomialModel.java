@@ -53,7 +53,7 @@ public static void genOccurences() {
     }
 }
 
-public static String getSNumber(int selectedIndex, int sNum) {
+public static String getX(int selectedIndex, int sNum) {
     BigDecimal answer = BigDecimal.ZERO;
     switch (selectedIndex) {
         case 0: // <=
