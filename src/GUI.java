@@ -58,5 +58,19 @@ private GUI() {
     standardDeviation.setBorder(BorderFactory.createEmptyBorder());
     numResults.setBorder(BorderFactory.createEmptyBorder());
     sOut.setBorder(BorderFactory.createEmptyBorder());
+
+    /* Did you know the combo bux has a known bug preventing the border from being set? It's a shame, really */
+    /* Credit goes to https://stackoverflow.com/questions/776893/remove-border-from-jcombobox for this code */
+    for (int i = 0; i < compare.getComponentCount(); i++)
+    {
+        if (compare.getComponent(i) instanceof JComponent) {
+            ((JComponent) compare.getComponent(i)).setBorder(BorderFactory.createLineBorder(new Color(187, 187, 187)));
+        }
+
+
+        if (compare.getComponent(i) instanceof AbstractButton) {
+            ((AbstractButton) compare.getComponent(i)).setBorderPainted(false);
+        }
+    }
 }
 }
