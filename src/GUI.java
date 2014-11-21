@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class GUI {
+
 private JTextField probability;
 private JTextField trials;
 private JPanel panel1;
@@ -74,13 +75,10 @@ private GUI() {
 
     /* Did you know the combo bux has a known bug preventing the border from being set? It's a shame, really */
     /* Credit goes to https://stackoverflow.com/questions/776893/remove-border-from-jcombobox for this code */
-    for (int i = 0; i < compare.getComponentCount(); i++)
-    {
+    for (int i = 0; i < compare.getComponentCount(); i++) {
         if (compare.getComponent(i) instanceof JComponent) {
             ((JComponent) compare.getComponent(i)).setBorder(BorderFactory.createLineBorder(new Color(187, 187, 187)));
         }
-
-
         if (compare.getComponent(i) instanceof AbstractButton) {
             ((AbstractButton) compare.getComponent(i)).setBorderPainted(false);
         }
@@ -89,7 +87,7 @@ private GUI() {
 
 private void update() {
     try {
-        BinomialModel.success_probability = Double.parseDouble(probability.getText());
+        BinomialModel.successChance = Double.parseDouble(probability.getText());
         BinomialModel.trials = Integer.parseInt(trials.getText());
         BinomialModel.genOccurences();
         standardDeviation.setText(BinomialModel.getStandardDeviation());
