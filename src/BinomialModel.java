@@ -12,13 +12,13 @@ private static BigDecimal probability(int n, int s) {
 }
 
 private static BigDecimal nPk(int n, int k){
-    if(n==k||k==0){
+    if(n == k || k == 0){
         return BigDecimal.ONE;
     }
-    if(k==1||k==n-1){
+    if(k == 1 || k == n - 1){
         return BigDecimal.valueOf(n);
     }
-    return factorial(n).divide(factorial(k).multiply(factorial(n-k)),10,6);
+    return factorial(n).divide(factorial(k).multiply(factorial(n-k)), 10, 6);
 }
 
 private static BigDecimal factorial(int n){
