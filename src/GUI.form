@@ -49,7 +49,8 @@
               <enabled value="false"/>
               <focusable value="false"/>
               <foreground color="-4473925"/>
-              <text value="Probability of Success:"/>
+              <labelFor value="d7ec5"/>
+              <text value="&amp;Probability of Success:"/>
             </properties>
           </component>
           <component id="d7ec5" class="javax.swing.JTextField" binding="probability">
@@ -59,7 +60,7 @@
             <properties>
               <background color="-16777216"/>
               <enabled value="true"/>
-              <focusAccelerator value="0"/>
+              <focusAccelerator value="P"/>
               <foreground color="-1"/>
               <horizontalAlignment value="4"/>
               <text value=""/>
@@ -74,7 +75,8 @@
               <enabled value="false"/>
               <focusable value="false"/>
               <foreground color="-4473925"/>
-              <text value="Number of Trials:"/>
+              <labelFor value="a2d6a"/>
+              <text value="&amp;Number of Trials:"/>
             </properties>
           </component>
           <component id="a2d6a" class="javax.swing.JTextField" binding="trials">
@@ -84,6 +86,7 @@
             <properties>
               <background color="-16777216"/>
               <enabled value="true"/>
+              <focusAccelerator value="N"/>
               <foreground color="-1"/>
               <horizontalAlignment value="4"/>
               <text value=""/>
@@ -95,6 +98,7 @@
             </constraints>
             <properties>
               <background color="-16777216"/>
+              <focusPainted value="false"/>
               <foreground color="-4473925"/>
               <text value="UPDATE"/>
             </properties>
@@ -120,6 +124,7 @@
               <background color="-4473925"/>
               <enabled value="false"/>
               <focusable value="false"/>
+              <labelFor value="bc4c3"/>
               <text value="Standard Deviation: "/>
             </properties>
           </component>
@@ -131,6 +136,7 @@
               <background color="-4473925"/>
               <enabled value="false"/>
               <focusable value="false"/>
+              <labelFor value="d4c2"/>
               <text value="Expected # of Results:"/>
             </properties>
           </component>
@@ -188,6 +194,7 @@
             </constraints>
             <properties>
               <background color="-16777216"/>
+              <focusable value="false"/>
               <foreground color="-4473925"/>
               <labelFor value="cac6f"/>
               <text value="S"/>
