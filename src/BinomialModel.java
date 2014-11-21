@@ -22,12 +22,7 @@ private static BigDecimal nPk(int n, int k){
 }
 
 private static BigDecimal factorial(int n){
-    BigDecimal factorial = BigDecimal.valueOf(n);
-    while(n>2) {
-        n--;
-        factorial = factorial.multiply(BigDecimal.valueOf(n));
-    }
-    return factorial;
+    return n <= 1 ? BigDecimal.ONE : factorial(n - 1).multiply(BigDecimal.valueOf(n));
 }
 
 public static String getStandardDeviation() {
