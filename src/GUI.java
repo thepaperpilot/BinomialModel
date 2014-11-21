@@ -91,6 +91,7 @@ private void update() {
     try {
         BinomialModel.success_probability = Double.parseDouble(probability.getText());
         BinomialModel.trials = Integer.parseInt(trials.getText());
+        BinomialModel.genOccurences();
         standardDeviation.setText(BinomialModel.getStandardDeviation());
         numResults.setText(BinomialModel.getNumberResults());
         sOut.setText(BinomialModel.getSNumber(compare.getSelectedIndex(), (Integer) sNum.getValue()));

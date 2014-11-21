@@ -5,6 +5,7 @@ class BinomialModel {
 
 public static double success_probability;
 public static int trials;
+private static ArrayList<BigDecimal> occurrences;
 
 private static BigDecimal individual_probability(int n, int s) {
     return nPk(n, s).multiply(BigDecimal.valueOf(success_probability).pow(s)).multiply(BigDecimal.valueOf(1).subtract(BigDecimal.valueOf(success_probability)).pow(n - s)).setScale(10, 6);
@@ -39,19 +40,21 @@ public static String getNumberResults() {
 
 public static String getProbabilityDistribution() {
     String out = "";
-    for(int i = 0; i <= trials; i++) {
-        out += i + ":\t" + individual_probability(trials, i) + "\n";
+    for (int i = 0; i < occurrences.size(); i++) {
+        out += i + ":\t" + occurrences.get(i) + "\n";
     }
     return out;
 }
 
-/* TODO Try to optimize this. Really slow with trials above 1000 */
-public static String getSNumber(int selectedIndex, int sNum) {
-    BigDecimal answer = BigDecimal.ZERO;
-    ArrayList<BigDecimal> occurrences = new ArrayList<BigDecimal>();
+public static void genOccurences() {
+    occurrences = new ArrayList<BigDecimal>();
     for (int i = 0; i <= trials; i++) {
         occurrences.add(individual_probability(trials, i));
     }
+}
+
+public static String getSNumber(int selectedIndex, int sNum) {
+    BigDecimal answer = BigDecimal.ZERO;
     switch (selectedIndex) {
         case 0: // <=
             for (int i = 0; i <= sNum; i++) {
